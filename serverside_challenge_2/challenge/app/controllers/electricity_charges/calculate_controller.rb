@@ -6,9 +6,8 @@ class ElectricityCharges::CalculateController < ApplicationController
       return render json: error, status: status
     end
 
-    # TODO: YAMLからパラメータ読み込み
+    calc_result, calc_status = import_price_from_yaml(params[:ampere].to_i, params[:usage].to_i)
 
-    # TODO: レスポンス返却
-    render json: {ampere: params[:ampere]}
+    render json: calc_result, status: calc_status
   end
 end
